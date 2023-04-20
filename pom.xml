@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>edu.iu.c322.group10</groupId>
-	<artifactId>itemservice</artifactId>
+	<artifactId>refund</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>itemservice</name>
 	<description>Demo project for Spring Boot</description>
