@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/refund")
@@ -22,6 +23,7 @@ public class RefundController {
         orderService = webClientBuilder.baseUrl("http://localhost:8083").build();
     }
 
+    @GetMapping
     public Refund findByOrderId(@PathVariable int orderId){
         Order order = orderService.get().uri("/orders/order/{orderId}", orderId)
                 .retrieve().bodyToMono(Order.class).block();
@@ -29,4 +31,15 @@ public class RefundController {
         refund.setCustomerId(order.customerId());
         return refund;
     }
+
+
+
+    @GetMapping("/status/{id}")
+    public String getRefundStatus(@PathVariable int refundID){
+        Optional<Refund> optionalRefund= refundRepository.findById(refundID);
+        Refund refund = optionalRefund.get();
+        return refund.getStatus();
+
+    }
+
 }
