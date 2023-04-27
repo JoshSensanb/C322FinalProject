@@ -9,7 +9,7 @@ public class Refund {
 
     private String reason;
 
-    private String status;
+    private Status status;
 
     public int getOrderId() {
         return orderId;
@@ -23,7 +23,7 @@ public class Refund {
         return reason;
     }
 
-    public String getStatus() {
+    public Status getStatus() {
         return status;
     }
 
@@ -39,7 +39,7 @@ public class Refund {
         this.reason = reason;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Status status) {
         this.status = status;
     }
 }
