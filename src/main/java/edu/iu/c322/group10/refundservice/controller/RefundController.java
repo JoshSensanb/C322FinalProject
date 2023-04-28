@@ -38,7 +38,7 @@ public class RefundController {
     public String getRefundStatus(@PathVariable int refundID){
         Optional<Refund> optionalRefund= refundRepository.findById(refundID);
         Refund refund = optionalRefund.get();
-        return refund.getStatus();
+        return refund.getStatus().sendMessage();
 
     }
 

@@ -1,7 +1,17 @@
 package edu.iu.c322.group10.refundservice.model;
 
+import jakarta.persistence.*;
+import org.hibernate.annotations.LazyToOne;
 
+import javax.annotation.processing.Generated;
+
+@Entity
 public class Refund {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int refundId;
+
 
     private int orderId;
 
@@ -9,6 +19,7 @@ public class Refund {
 
     private String reason;
 
+    @OneToOne
     private Status status;
 
     public int getOrderId() {
@@ -41,5 +52,13 @@ public class Refund {
 
     public void setStatus(Status status) {
         this.status = status;
+    }
+
+    public int getRefundId() {
+        return refundId;
+    }
+
+    public void setRefundId(int refundId) {
+        this.refundId = refundId;
     }
 }
