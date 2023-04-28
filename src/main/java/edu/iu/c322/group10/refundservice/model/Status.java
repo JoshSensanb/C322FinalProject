@@ -5,12 +5,11 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
-@Entity
+
 public interface Status {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    public int id = 0;
+
+
 
     String sendMessage();
 

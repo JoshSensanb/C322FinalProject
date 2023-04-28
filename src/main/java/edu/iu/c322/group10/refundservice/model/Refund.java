@@ -19,8 +19,8 @@ public class Refund {
 
     private String reason;
 
-    @OneToOne
-    private Status status;
+
+    private String status;
 
     public int getOrderId() {
         return orderId;
@@ -32,10 +32,6 @@ public class Refund {
 
     public String getReason() {
         return reason;
-    }
-
-    public Status getStatus() {
-        return status;
     }
 
     public void setOrderId(int orderId) {
@@ -50,9 +46,7 @@ public class Refund {
         this.reason = reason;
     }
 
-    public void setStatus(Status status) {
-        this.status = status;
-    }
+
 
     public int getRefundId() {
         return refundId;
@@ -60,5 +54,13 @@ public class Refund {
 
     public void setRefundId(int refundId) {
         this.refundId = refundId;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

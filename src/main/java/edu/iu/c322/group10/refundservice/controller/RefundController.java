@@ -24,6 +24,7 @@ public class RefundController {
     }
 
     @GetMapping
+    @RequestMapping("/get/{orderId}")
     public Refund findByOrderId(@PathVariable int orderId){
         Order order = orderService.get().uri("/orders/order/{orderId}", orderId)
                 .retrieve().bodyToMono(Order.class).block();
@@ -35,11 +36,48 @@ public class RefundController {
 
 
     @GetMapping("/status/{id}")
-    public String getRefundStatus(@PathVariable int refundID){
-        Optional<Refund> optionalRefund= refundRepository.findById(refundID);
+    public String getRefundStatus(@PathVariable int id){
+        Optional<Refund> optionalRefund= refundRepository.findById(id);
         Refund refund = optionalRefund.get();
-        return refund.getStatus().sendMessage();
+        return refund.getStatus();
 
     }
+
+    @PutMapping("status/update/{id}")
+    public int update(@RequestBody Refund refund,@PathVariable int id){
+        Refund newRefund = refund;
+        Optional<Refund> optionalRefund = refundRepository.findById(id);
+        Refund oldRefund = optionalRefund.get();
+        oldRefund.setStatus(newRefund.getStatus());
+
+        refundRepository.save(oldRefund);
+
+
+
+        return oldRefund.getRefundId();
+
+    }
+
+
+    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping()
+    public int create(@Valid @RequestBody Refund refund){
+
+        Refund r = refundRepository.save(refund);
+
+
+        return r.getRefundId();
+
+    }
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @DeleteMapping("/delete/{id}")
+    public void delete(@PathVariable int id){
+        Refund refund = new Refund();
+        refund.setCustomerId(id);
+        refundRepository.delete(refund);
+    }
+
+
 
 }
