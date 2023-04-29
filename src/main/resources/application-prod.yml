@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://postgres:zTvWgX68MtNPsd7e8XBG@containers-us-west-183.railway.app:6441/railway
+    username: postgres
+    password: zTvWgX68MtNPsd7e8XBG
+    name: railway
+
+    sql:
+      init:
+        mode: always
